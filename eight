@@ -21,3 +21,177 @@ class ErrorBoundary extends React.Component{
         }
     }
     export default ErrorBoundary;
+--------------TYoeScript----------------------------------------------
+
+function Data(){
+    let userName: string="Dhanya";
+    let age:number =30;
+    let isActive:boolean=true;
+    //define the array  bcoz of using type as string 
+    const course:string[]=["React","Angular","Vue"]
+
+    //create an object in TypeScript
+    type Employee={
+        id:number;
+        name:string;
+        city:string;
+    }
+
+    const emp1:Employee={
+        id:101,
+        name:'ABC',
+        city:'kumta'
+    }
+
+    
+
+
+    return(
+        <div>
+            <h2>user Profile :</h2>
+            <p>Name:{userName}</p>
+            <p>Age::{age}</p>
+            <p>Is Active:{isActive ? "yes" :"No"}</p>
+            {/* <ul>
+                {course.map((c,index)=>(
+                    <li key={index}>
+                        {c}
+                    </li>
+                ))}
+            </ul> */}
+            <p>Employee id:{emp1.id}</p>
+            <p>Employee Name:{emp1.name}</p>
+            <p>Employee City:{emp1.city}</p>
+
+        </div>
+    )
+}
+export default Data;
+---------------------------------------------------
+
+interface CardProps {
+    children:React.ReactNode;
+    style?:React.CSSProperties;
+}
+
+const Card:React.FC<CardProps>=({children,style})=>{
+    return (
+        <div style={{padding:'20px',border:'1px solid gray',borderRadius:'8px',...style}}>
+            {children}
+
+        </div>
+    )
+}
+export default Card;
+-----------------------------------------------------------------------Button-----------------------------------------
+import React from 'react';
+
+interface ButtonProps {
+  label: string;
+  onClick: () => void;
+  disabled?: boolean;
+}
+
+const Button: React.FC<ButtonProps> = ({ label, onClick, disabled = false }) => {
+  return (
+    <button onClick={onClick} disabled={disabled}>
+      {label}
+    </button>
+  );
+};
+
+export default Button;
+
+-------------------------------------------------SetCount------------------
+
+import {useState} from "react";
+function StateComp()
+{
+    //<number> is used to tell only the numbersa are allowed
+    const [count,setCount]=useState<number>(0);
+
+    const handleClick=()=>{
+        setCount(count+1)
+    }
+
+    return (
+        <div>
+            <h3>Count:{count}</h3>
+            <button onClick={handleClick}>Increment</button>
+        </div>
+    )
+}
+export default StateComp;
+------------------------------------------------------------------Props--------------------
+// //CReating props in TypeScript
+// // function PropComp(props){
+// //     return(
+// //         <div>
+// //             <h2>PropComp in TypeScript</h2>
+// //             <p> Name:{props.name}</p>
+// //         </div>
+// //     )
+// // }
+// // export default PropComp;
+// //Blue Print for the props How it is Lokk Like 
+// interface MyProps{
+//     name:string,
+//     city:string
+// }
+// //FC-functional Component
+// const PropComp:React.FC<MyProps>=({name,city})=>{ // With deconstruturing
+
+// // const PropComp =(props:MyProps)=>{
+
+//     return(
+//         <div>
+//             <h2>PropComp in TypeScript:</h2>
+//             <p> Name:{props.name}</p>
+//             <p> City:{props.city}</p>
+//         </div>
+//     )
+
+// }
+// export default PropComp;
+---------------------------------Form--------------------------------------
+import {useState} from "react";
+
+interface FormData {
+    name:string,
+    email:string
+}
+function FormComp(){
+    const [form,setForm]=useState<FormData>({
+        name:'',
+        email:'',
+        
+    });
+
+    const handleChange=(event:React.ChangeEvent<HTMLInputElement>)=>{
+        const {name,value}=event.target;
+        setForm({
+            ...form,
+            [name]:value
+        })
+    }
+    return(
+        <div>
+            <h1>User Form</h1>
+            <input name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Enter Name"/> <br></br>
+
+            <input name="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Enter Email"/> <br></br>
+            <hr></hr>
+            <p>Name:{form.name}</p>
+            <p>Email:{form.email}</p>
+
+        </div>
+    )
+}
+export default FormComp;
+--------------------------------------------------------------------------------------------------
