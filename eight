@@ -1,0 +1,23 @@
+import React,{Component} from 'react';
+
+
+class ErrorBoundary extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state={
+            hasError:false};
+        }
+        static getDerivedStateFromError(error){
+            return {hasError:true};
+        }
+        componentDidCatch(error,errorInfo){
+            console.log("Error Caugh By Error Boundary:",error,errorInfo);
+        }
+        render(){
+            if(this.state.hasError){
+                return <h2>Somthing Went Wrong:PLease Try After Some Time....</h2>
+            }
+            return this.props.children; //REnder the childe Components if any error 
+        }
+    }
+    export default ErrorBoundary;
