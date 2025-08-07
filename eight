@@ -194,4 +194,19 @@ function FormComp(){
     )
 }
 export default FormComp;
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------- Converting from Javascript to TypeScript-----------------
+1.Make the extension as jsx to tsx 
+2.https://reactnative.dev/docs/typescript From there Copy and execute in terminal 
+3. mak ethe change in main.jsx (! add this)
+4.exceute this npx tsc --init 
+5. {
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    "target":"es5",
+    "jsx":"react-jsx",
+    "module":"esnext",
+    "moduleResolution":"node",
+    "strict":true
+}
+}
+6. Remove the App.js from main and import the ciurrect App and Exceute the file
